@@ -64,7 +64,7 @@ export const HotelTableR = ({ title, items, onComplete, onDelete }) => {
                     >
                       <i className="fa-solid fa-bell-concierge"></i>
                     </button>
-
+                    {/* add action buttom for delete */}
                     <button
                       className="btn btn-danger"
                       onClick={() => deleteReser(item.Num_Romm)}
