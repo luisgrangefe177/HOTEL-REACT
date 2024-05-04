@@ -1,12 +1,6 @@
 import { PropTypes } from "prop-types";
-// import Swal from 'sweetalert2'
 
 
-// const openMesnasaje2=()=>{
-//   Swal.fire({
-//     template: "#my-template"
-//   });
-// }
 
 export const HotelTableR = ({ title, items, onComplete, onDelete }) => {
   const complete = (number_romm) => {
@@ -21,7 +15,7 @@ export const HotelTableR = ({ title, items, onComplete, onDelete }) => {
 
   return (
     <>
-    
+
       <div className="container mt-3">
         <h3>{title}</h3>
         <table className="table table-hover">
@@ -64,11 +58,9 @@ export const HotelTableR = ({ title, items, onComplete, onDelete }) => {
                     >
                       <i className="fa-solid fa-bell-concierge"></i>
                     </button>
-                    {/* add action buttom for delete */}
                     <button
                       className="btn btn-danger"
                       onClick={() => deleteReser(item.Num_Romm)}
-                      
                     >
                       <i className="fa-solid fa-trash"></i>
                     </button>

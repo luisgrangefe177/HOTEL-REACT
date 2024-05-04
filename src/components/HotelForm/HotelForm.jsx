@@ -1,16 +1,8 @@
 import { useState } from "react";
 import { Rom_Num1, Rom_Num2, suit } from "../hotel/HotelClass";
-import Swal from 'sweetalert2'
+import { openMessaje } from "../../componentes";
 
 
-const openMesnasaje=()=>{
-  Swal.fire({
-    title: 'Reservado',
-    text: 'Guardado exitosamente',
-    icon: 'success',
-    timer: '2000',
-  })
-}
 export const HotelForm = ({ onReserve }) => {
   const [reservas, setReservas] = useState([]);
   const [reserva, setReserva] = useState("");
@@ -19,7 +11,6 @@ export const HotelForm = ({ onReserve }) => {
   const [date_star, setFechaInicio] = useState("");
   const [date_end, setFechaFinal] = useState("");
   const [type_rom, setTipohabitacion] = useState("");
-
 
   // const handleClick = () => {
   //   console.log(reserva);
@@ -86,7 +77,6 @@ export const HotelForm = ({ onReserve }) => {
       tipoHabitacion,
       fecha_Inicio,
       fecha_fin
-      // (letraH = "C")
     );
     reserva.obtenerDias();
     reserva.obtenerPreciototal();
@@ -114,7 +104,7 @@ export const HotelForm = ({ onReserve }) => {
           date_star,
           date_end
         );
-        openMesnasaje();
+        openMessaje("Habitacion individual","reservada","success");
       } else if (type_rom === "Habitacion Doble") {
         result = HabitacionDoble(
           name_Person,
@@ -123,7 +113,8 @@ export const HotelForm = ({ onReserve }) => {
           date_star,
           date_end
         );
-        openMesnasaje();
+        openMessaje("Habitacion Doble","reservada","success");
+        
       } else if (type_rom === "Suit de Lujo") {
         result = HabitacionSuit(
           name_Person,
@@ -132,7 +123,7 @@ export const HotelForm = ({ onReserve }) => {
           date_star,
           date_end
         );
-        openMesnasaje();
+        openMessaje("Suit de Lujo","reservada","success");
       } else {
         alert("no ha ingresado información");
         return;
