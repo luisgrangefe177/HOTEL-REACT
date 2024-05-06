@@ -5,6 +5,9 @@ import Swal from "sweetalert2";
     title,
     text,
     icon,
-    timer: "2000",
+    timer: 1500,
   });
 };
+
+
+ 

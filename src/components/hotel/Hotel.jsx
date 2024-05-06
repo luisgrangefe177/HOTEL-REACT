@@ -25,7 +25,7 @@ function Hotel(){
       
     return(
         <>
-        <HotelForm onReserve={handleAdd} />
+        {/* <HotelForm onReserve={handleAdd} /> */}
         <HotelTableR items={items} title={"Reservas de Hotel"} onComplete={handleComplete} onDelete={handleDelete}/>
         </>
          
