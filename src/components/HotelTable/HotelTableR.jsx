@@ -1,27 +1,66 @@
 import { PropTypes } from "prop-types";
-// import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 
-// const openMesnasaje2=()=>{
-//   Swal.fire({
-//     template: "#my-template"
-//   });
-// }
 
 export const HotelTableR = ({ title, items, onComplete, onDelete }) => {
-  const complete = (number_romm) => {
-    onComplete(number_romm);
+   const complete = (number_romm) => {
     console.log(`numHabitacion`, number_romm);
   };
 
   const deleteReser = (number_romm) => {
-    onDelete(number_romm);
     console.log(`numHabitacion`, number_romm);
   };
 
+  const confirmar= (number_romm)=>{
+
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "Se eliminara la reserva",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "si, eliminar",
+      cancelButtonText: "Cancelar"
+
+    }).then((result) => {
+      if (result.isConfirmed) {
+        onDelete(number_romm);
+        Swal.fire({
+          title: "Eliminado",
+          text: "Reserva eliminada",
+          icon: "success",
+          timer: 2000
+        });
+      }
+    });
+  }
+
+  const openToast = (number_romm) =>{
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      }
+    });
+    
+    Toast.fire({
+      icon: "success",
+      title: "Habitación disponible"
+    });
+    onComplete(number_romm)
+  
+  }
+
   return (
     <>
-    
+
       <div className="container mt-3">
         <h3>{title}</h3>
         <table className="table table-hover">
@@ -60,15 +99,13 @@ export const HotelTableR = ({ title, items, onComplete, onDelete }) => {
                   <div className="btn-group">
                     <button
                       className="btn btn-success"
-                      onClick={() => complete(item.Num_Romm)}
+                      onClick={() => openToast(item.Num_Romm)}
                     >
                       <i className="fa-solid fa-bell-concierge"></i>
                     </button>
-                    {/* add action buttom for delete */}
                     <button
                       className="btn btn-danger"
-                      onClick={() => deleteReser(item.Num_Romm)}
-                      
+                      onClick={() => confirmar(item.Num_Romm)}
                     >
                       <i className="fa-solid fa-trash"></i>
                     </button>
