@@ -1,6 +1,6 @@
 import { useState, createContext, useContext } from "react";
 
-const UserContext = createContext();
+export const UserContext = createContext();
 
 export function Component1Fixed() {
   const [user, setUser] = useState({

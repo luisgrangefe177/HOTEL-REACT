@@ -1,32 +1,24 @@
-import { useState } from "react";
 import {HotelTableR} from "../HotelTable/HotelTableR";
-import HotelForm from "../HotelForm/HotelForm";
+import { useHotelApp } from "../../context/useHotelApp";
 
 
 function Hotel(){
-    const [items, setItems] = useState([]);
+    // const [items, setItems] = useState([]);
 
-      const handleAdd = (reserv) => {    
-        setItems((prevState) => [...prevState, reserv]);
-      };
+     const {reservas,completReserva,deleteReserva}=useHotelApp();
 
       const handleComplete=(number_romm)=>{
-        const reservaACompletar = items.find(x=>x.Num_Romm===number_romm)
-        reservaACompletar.reservada=true;
-        setItems((prevState) => [...prevState]);
-        console.log(`reservaACompletar`,reservaACompletar);
+        completReserva(number_romm);
       }
     
       const handleDelete=(number_romm)=>{
-        const reservaACompletar = items.filter(x=>x.Num_Romm!==number_romm)
-        console.log(`reservaAEliminar`,reservaACompletar);
-        setItems(reservaACompletar);
+        deleteReserva(number_romm);
       }
       
     return(
         <>
         {/* <HotelForm onReserve={handleAdd} /> */}
-        <HotelTableR items={items} title={"Reservas de Hotel"} onComplete={handleComplete} onDelete={handleDelete}/>
+        <HotelTableR items={reservas} title={"Reservas de Hotel"} onComplete={handleComplete} onDelete={handleDelete}/>
         </>
          
     )

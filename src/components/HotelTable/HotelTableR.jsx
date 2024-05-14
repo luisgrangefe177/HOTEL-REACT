@@ -1,10 +1,16 @@
 import { PropTypes } from "prop-types";
+import { useContext } from "react";
 import Swal from "sweetalert2";
+import { HotelContex } from "../../context/HotelProvider";
+
 
 
 
 export const HotelTableR = ({ title, items, onComplete, onDelete }) => {
-   const complete = (number_romm) => {
+    const reservas = useContext(HotelContex);
+    console.log("Reservas", reservas)
+
+    const complete = (number_romm) => {
     console.log(`numHabitacion`, number_romm);
   };
 

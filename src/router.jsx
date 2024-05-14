@@ -1,27 +1,26 @@
 import { createBrowserRouter } from "react-router-dom";
-import Root from "./routes/route.jsx";
 import ErrorPage from "./error-page.jsx";
-import { TodoForm } from "./components/TodoForm/TodoForm.jsx";
-
-import Todo from "./components/Todo/Todo.jsx";
 import { Component1Fixed } from "./components/context/solution.jsx";
 import { Component1 } from "./components/context/example.jsx";
 import { GrandParent } from "./components/Children/GrandParent.jsx";
 import GlobalState from "./components/context/shared.jsx";
+import HotelForm from "./components/HotelForm/HotelForm.jsx";
+import Hotel from "./components/hotel/Hotel.jsx";
+import Root from "./routes/root.jsx";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
+    element: <Root/>,
     errorElement: <ErrorPage />,
     children: [
       {
         path: "form",
-        element: <TodoForm />,
+        element: <HotelForm/>,
       },
       {
         path: "report",
-        element: <Todo />,
+        element: <Hotel />,
       },
       {
         path: "contextFixed",

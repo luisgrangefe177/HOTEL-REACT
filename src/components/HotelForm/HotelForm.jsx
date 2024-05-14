@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Rom_Num1, Rom_Num2, suit } from "../hotel/HotelClass";
 import { openMessaje } from "../../componentes";
+import { useHotelApp } from "../../context/useHotelApp";
 
 
-export const HotelForm = ({ onReserve }) => {
+export const HotelForm = () => {
   const [reservas, setReservas] = useState([]);
   const [reserva, setReserva] = useState("");
   const [number_romm, setNumber_romm] = useState("");
@@ -11,6 +12,7 @@ export const HotelForm = ({ onReserve }) => {
   const [date_star, setFechaInicio] = useState("");
   const [date_end, setFechaFinal] = useState("");
   const [type_rom, setTipohabitacion] = useState("");
+  const {addReserva} =useHotelApp();
 
   // const handleClick = () => {
   //   console.log(reserva);
@@ -128,7 +130,7 @@ export const HotelForm = ({ onReserve }) => {
         alert("no ha ingresado información");
         return;
       }
-      onReserve(result);
+      addReserva(result);
     }
   };
 

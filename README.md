@@ -1,7 +1,7 @@
 Para ejecutar este proyecto necesitamos intalar dependencias de noje 
-obviamente cteniendo instalado noje en nuestra computadora 
+obviamente teniendo instalado noje en nuestra computadora 
 
-realizamos el comando: npm -install || npm -i 
+realizamos el comando: npm install || npm -i 
 
 tambien para activar las alertas y hacer de manera corresta instalamos SweetAlert2
 con el comando: 
