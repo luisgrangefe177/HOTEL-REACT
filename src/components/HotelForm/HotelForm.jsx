@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Rom_Num1, Rom_Num2, suit } from "../hotel/HotelClass";
 import { openMessaje } from "../../componentes";
 import { useHotelApp } from "../../context/useHotelApp";
@@ -14,10 +14,30 @@ export const HotelForm = () => {
   const [type_rom, setTipohabitacion] = useState("");
   const {addReserva} =useHotelApp();
 
-  // const handleClick = () => {
-  //   console.log(reserva);
-  //   onMessage(reserva);
-  // };
+  const { addHotel, findHotel, updateHotel } = useHotelApp();
+  const { id: urlId } = useParams();
+
+  const getHotelById = (id) => {
+    const response = findHotel(id);
+    return response;
+  };
+
+  const convertDate = (dateString) => {
+    const date = new Date(dateString);
+    const formattedDate = date.toISOString().split("T")[0];
+    return formattedDate;
+  };
+
+  useEffect(() => {
+    console.log(urlId);
+    const HotelFound = getHotelById(urlId);
+    console.log(`HotelFound`, HotelFound);
+    if (HotelFound) {
+      setDescription(HotelFound.descripcion);
+      setPriority(HotelFound.prioridad);
+      setDate(convertDate(HotelFound.fechaVencimiento));
+    }
+  }, [urlId]);
 
   const anddleAdd = () => {
     setReservas((prevState) => [...prevState, reserva]);
@@ -129,6 +149,20 @@ export const HotelForm = () => {
       } else {
         alert("no ha ingresado información");
         return;
+      }
+      
+      let message = "Tarea registrada correctamente";
+      let response = false;
+      if (urlId) {
+        message = "Tarea actualizada correctamente";
+        response = await updateTodo(urlId, result);
+      } else {
+        response = await addTodo(result);
+      }
+      if (response.state)
+        showMessage("success", message, "Todos los datos fueron registrados");
+      else {
+        showMessage("warning", response.message);
       }
       addReserva(result);
     }

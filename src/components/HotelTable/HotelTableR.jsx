@@ -2,6 +2,7 @@ import { PropTypes } from "prop-types";
 import { useContext } from "react";
 import Swal from "sweetalert2";
 import { HotelContex } from "../../context/HotelProvider";
+import { Navigate } from "react-router-dom";
 
 
 
@@ -10,15 +11,12 @@ export const HotelTableR = ({ title, items, onComplete, onDelete }) => {
     const reservas = useContext(HotelContex);
     console.log("Reservas", reservas)
 
-    const complete = (number_romm) => {
-    console.log(`numHabitacion`, number_romm);
+
+  const updateTask = (id_rooms) => {
+    Navigate("/form/" + id_rooms);
   };
 
-  const deleteReser = (number_romm) => {
-    console.log(`numHabitacion`, number_romm);
-  };
-
-  const confirmar= (number_romm)=>{
+  const confirmar= (id_rooms)=>{
 
     Swal.fire({
       title: "¿Estás seguro?",
@@ -32,7 +30,7 @@ export const HotelTableR = ({ title, items, onComplete, onDelete }) => {
 
     }).then((result) => {
       if (result.isConfirmed) {
-        onDelete(number_romm);
+        onDelete(id_rooms);
         Swal.fire({
           title: "Eliminado",
           text: "Reserva eliminada",
@@ -43,7 +41,7 @@ export const HotelTableR = ({ title, items, onComplete, onDelete }) => {
     });
   }
 
-  const openToast = (number_romm) =>{
+  const openToast = (id_rooms) =>{
     const Toast = Swal.mixin({
       toast: true,
       position: "top-end",
@@ -60,7 +58,7 @@ export const HotelTableR = ({ title, items, onComplete, onDelete }) => {
       icon: "success",
       title: "Habitación disponible"
     });
-    onComplete(number_romm)
+    onComplete(id_rooms)
   
   }
 
@@ -86,8 +84,8 @@ export const HotelTableR = ({ title, items, onComplete, onDelete }) => {
             </tr>
           </thead>
           <tbody>
-            {items.map((item, idx) => (
-              <tr key={idx}>
+            {items.map((item) => (
+              <tr key={item.id_rooms}>
                 <td>{item.nombrePersonR}</td>
                 <td>{item.Num_Romm}</td>
                 <td>{item.tipoHabitacion}</td>
@@ -105,16 +103,22 @@ export const HotelTableR = ({ title, items, onComplete, onDelete }) => {
                   <div className="btn-group">
                     <button
                       className="btn btn-success"
-                      onClick={() => openToast(item.Num_Romm)}
+                      onClick={() => openToast(item.id_rooms)}
                     >
                       <i className="fa-solid fa-bell-concierge"></i>
                     </button>
                     <button
                       className="btn btn-danger"
-                      onClick={() => confirmar(item.Num_Romm)}
+                      onClick={() => confirmar(item.id_rooms)}
                     >
                       <i className="fa-solid fa-trash"></i>
                     </button>
+                    <button
+                    className="btn btn-info"
+                    onClick={() => updateTask(item.id_rooms)}
+                  >
+                    Actualizar
+                  </button>
                   </div>
                 </td>
               </tr>

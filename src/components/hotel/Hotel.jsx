@@ -7,8 +7,8 @@ function Hotel(){
 
      const {reservas,completReserva,deleteReserva}=useHotelApp();
 
-      const handleComplete=(number_romm)=>{
-        completReserva(number_romm);
+      const handleComplete=(id_rooms)=>{
+        completReserva(id_rooms);
       }
     
       const handleDelete=(number_romm)=>{
