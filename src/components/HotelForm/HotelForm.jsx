@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Rom_Num1, Rom_Num2, suit } from "../hotel/HotelClass";
 import { openMessaje } from "../../componentes";
 import { useHotelApp } from "../../context/useHotelApp";
+import { useParams } from "react-router-dom";
+import { showMessage } from "../../util";
 
 
 export const HotelForm = () => {
@@ -15,10 +17,10 @@ export const HotelForm = () => {
   const {addReserva} =useHotelApp();
 
   const { addHotel, findHotel, updateHotel } = useHotelApp();
-  const { id: urlId } = useParams();
+  const { id_rooms: urlId } = useParams();
 
-  const getHotelById = (id) => {
-    const response = findHotel(id);
+  const getHotelById = (id_rooms) => {
+    const response = findHotel(id_rooms);
     return response;
   };
 
@@ -33,9 +35,11 @@ export const HotelForm = () => {
     const HotelFound = getHotelById(urlId);
     console.log(`HotelFound`, HotelFound);
     if (HotelFound) {
-      setDescription(HotelFound.descripcion);
-      setPriority(HotelFound.prioridad);
-      setDate(convertDate(HotelFound.fechaVencimiento));
+      setNombre(HotelFound.name_Person);
+      setNumber_romm(HotelFound.number_romm);
+      setFechaInicio(convertDate(HotelFound.date_star));
+      setFechaFinal(convertDate(HotelFound.date_end));
+      setTipohabitacion(HotelFound.type_rom)
     }
   }, [urlId]);
 
@@ -107,7 +111,7 @@ export const HotelForm = () => {
     return reserva;
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
     let result = {};
 
@@ -151,19 +155,20 @@ export const HotelForm = () => {
         return;
       }
       
-      let message = "Tarea registrada correctamente";
+      let message = "Reserva registrada correctamente";
       let response = false;
       if (urlId) {
-        message = "Tarea actualizada correctamente";
-        response = await updateTodo(urlId, result);
+        message = "Reserva actualizada correctamente";
+        response = await updateHotel(urlId, result);
       } else {
-        response = await addTodo(result);
+        response = await addHotel(result);
       }
       if (response.state)
         showMessage("success", message, "Todos los datos fueron registrados");
       else {
         showMessage("warning", response.message);
       }
+      
       addReserva(result);
     }
   };

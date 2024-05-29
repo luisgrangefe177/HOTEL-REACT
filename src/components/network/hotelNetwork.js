@@ -1,23 +1,30 @@
 import { getToken } from "../../util";
 
-const URL_API = "http://localhost:3000/todoSimple";
-const URL_ALL_API = "http://localhost:3000/todos";
+const URL_API = "http://localhost:3000/hotel";
+const URL_ALL_API = "http://localhost:3000/hotel";
 
-export const getTodosServer = (cb) => {
+export const getHotelServer = (cb) => {
   try {
     fetch(URL_API)
       .then((response) => response.json())
       .then((response) => {
         console.log(response);
-        const finalTodos = response.map((item) => {
+        const finalHotels = response.map((item) => {
           return {
-            id: item.ts_id,
-            descripcion: item.ts_description,
-            prioridad: item.ts_priority,
-            completada: item.ts_completed === 0 ? false : true,
+            idx: item.id_rooms,
+            nombrePersonR: item.tr_nameperson || item.nameperson,
+            Num_Romm: item.tr_numRoom || item.numRoom,
+            tipoHabitacion: item.tr_typeroom,
+            fecha_Inicio: item.tr_starDate,
+            fecha_fin: item.tr_dateEnd,
+            letraH: item.tr_letterRoom,
+            dias_fechas: item.tr_catDays,
+            precioHabitacion: item.tr_costRom,
+            precio_Total: item.tr_costTotal,
+            reservada: item.tr_complet || item.complet === 0 ? false : true,
           };
         });
-        cb(finalTodos);
+        cb(finalHotels);
       });
   } catch (error) {
     console.log(error);
@@ -51,16 +58,23 @@ export const getAllHotelServer = (cb) => {
   }
 };
 
-export const getTodosServerSync = async (cb) => {
+export const getHotelServerSync = async (cb) => {
   try {
     let response = await fetch(URL_API);
     response = await response.json();
     const finalTodos = response.map((item) => {
       return {
-        id: item.ts_id,
-        descripcion: item.ts_description,
-        prioridad: item.ts_priority,
-        completada: item.ts_completed === 0 ? false : true,
+        idx: item.id_rooms,
+        nombrePersonR: item.tr_nameperson || item.nameperson,
+        Num_Romm: item.tr_numRoom || item.numRoom,
+        tipoHabitacion: item.tr_typeroom,
+        fecha_Inicio: item.tr_starDate,
+        fecha_fin: item.tr_dateEnd,
+        letraH: item.tr_letterRoom,
+        dias_fechas: item.tr_catDays,
+        precioHabitacion: item.tr_costRom,
+        precio_Total: item.tr_costTotal,
+        reservada: item.tr_complet || item.complet === 0 ? false : true,
       };
     });
     cb(finalTodos);
@@ -69,17 +83,19 @@ export const getTodosServerSync = async (cb) => {
   }
 };
 
-export const getTodoByIdServerSync = async (id) => {
+export const getHotelByIdServerSync = async (id_rooms) => {
   let response = {};
   try {
-    response = await fetch(`${URL_API}/${id}`);
+    response = await fetch(`${URL_API}/${id_rooms}`);
     response = await response.json();
     response = response.map((item) => {
       return {
-        id: item.ts_id,
-        descripcion: item.ts_description,
-        prioridad: item.ts_priority,
-        completada: item.ts_completed === 0 ? false : true,
+        idx: item.id_rooms,
+        nombrePersonR: item.tr_nameperson || item.nameperson,
+        tipoHabitacion: item.tr_typeroom,
+        fecha_Inicio: item.tr_starDate,
+        fecha_fin: item.tr_dateEnd,
+        reservada: item.tr_complet || item.complet === 0 ? false : true,
       };
     });
   } catch (error) {
@@ -88,9 +104,9 @@ export const getTodoByIdServerSync = async (id) => {
   return response;
 };
 
-export const completeTodoServer = (id) => {
+export const completeHotelServer = (id_rooms) => {
   try {
-    fetch(`${URL_API}/${id}`, {
+    fetch(`${URL_API}/${id_rooms}`, {
       method: "PATCH",
     })
       .then((response) => response.json())
@@ -102,16 +118,18 @@ export const completeTodoServer = (id) => {
   }
 };
 
-export const updateTodoServer = (id, todo) => {
+export const updateHotelServer = (id_rooms, reservas) => {
   try {
-    const todoToUpdate = {
-      description: todo.descripcion,
-      priority: todo.prioridad,
-      completed: todo.completada,
+    const HotelToUpdate = {
+      nameperson: reservas.nombrePersonR,
+      numRoom: reservas.Num_Romm,
+      typeRoom: reservas.tipoHabitacion,
+      dataStar: reservas.fecha_Inicio,
+      dataEnd: reservas.fecha_fin,
     };
-    fetch(`${URL_API}/${id}`, {
+    fetch(`${URL_API}/${id_rooms}`, {
       method: "PUT",
-      body: JSON.stringify(todoToUpdate),
+      body: JSON.stringify(HotelToUpdate),
       headers: {
         "Content-Type": "application/json",
       },
@@ -125,9 +143,9 @@ export const updateTodoServer = (id, todo) => {
   }
 };
 
-export const deleteTodoServer = (id) => {
+export const deleteReservaServer = (id_rooms) => {
   try {
-    fetch(`${URL_API}/${id}`, {
+    fetch(`${URL_API}/${id_rooms}`, {
       method: "DELETE",
     })
       .then((response) => response.json())

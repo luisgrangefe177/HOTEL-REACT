@@ -1,5 +1,6 @@
-import {HotelTableR} from "../HotelTable/HotelTableR";
 import { useHotelApp } from "../../context/useHotelApp";
+import {HotelTableR} from "../HotelTable/HotelTableR";
+
 
 
 function Hotel(){

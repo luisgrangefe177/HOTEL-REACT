@@ -1,5 +1,7 @@
 import { createContext, useEffect, useState } from "react";
-import { getAllHotelServer } from "../components/network/hotelSimpleNetwork";
+import { getAllHotelServer, updateHotelServer,deleteReservaServer } from "../components/network/hotelNetwork";
+
+
 
 export const HotelContex = createContext();
 
@@ -8,43 +10,55 @@ export const HotelProvider = ({ children }) => {
 
   useEffect(() => {
     // getTodosServer();
-    // getTodosServerSync(setTodos);
-    getAllHotelServer();
-    
+    getAllHotelServer(setreservas);
   }, []);
 
-  const addReserva = (reseva) => {
+  const addHotel = (reseva) => {
     setreservas((prevState) => [...prevState, reseva]);
     console.log(`reservas`, reservas);
   };
 
   const completReserva = (id_rooms) => {
-    const reservaACompletar = reservas.find(x=>x.id_rooms===id_rooms)
-        reservaACompletar.reservada=true;
-        setreservas((prevState) => [...prevState]);
+    const reservaACompletar = reservas.find((x) => x.id_rooms === id_rooms);
+    reservaACompletar.reservada = true;
+    setreservas((prevState) => [...prevState]);
     console.log(`reservas`, reservas);
   };
-  const deleteReserva = (number_romm) => {
-    const reservaACompletar = reservas.filter(x=>x.Num_Romm!==number_romm)
-        console.log(`reservaAEliminar`,reservaACompletar);
-        setreservas(reservaACompletar);
+  const deleteReserva = (id_rooms) => {
+    const reservaACompletar = reservas.filter(
+      (x) => x.id_rooms !== id_rooms
+    );
+    setreservas(reservaACompletar);
+    deleteReservaServer(id_rooms)
   };
-  
-  // const updateTodo = (id, updatedTodo) => {
-  //   const index = todos.findIndex((todo) => todo.id === id);
-  //   if (index !== -1) {
-  //     const newTodos = [...todos];
-  //     newTodos[index] = updatedTodo;
-  //     if (updatedTodo.fechaVencimiento) {
-  //       updateTodoDateServer(id, updatedTodo);
-  //     } else {
-  //       updateTodoServer(id, updatedTodo);
-  //     }
-  //     setTodos(newTodos);
-  //   }
-  // };
+  const findHotel = (id_rooms) => {
+    const reservaABuscar = reservas.find((x) => x.id_rooms == Number(id_rooms));
+    // let reservaABuscar = await getHotelByIdServerSync(id);
+    // reservaABuscar = reservaABuscar[0];
+    return reservaABuscar;
+  };
+
+  const updateHotelR = (id_rooms, updatedReser) => {
+    const index = reservas.findIndex((x) => x.id_rooms === id_rooms);
+    if (index !== -1) {
+      const newReservas = [...reservas];
+      newReservas[index] = updatedReser;
+      updateHotelServer(id_rooms, updatedReser);
+
+      setreservas(newReservas);
+    }
+  };
   return (
-    <HotelContex.Provider value={{ reservas, addReserva, completReserva,deleteReserva}}>
+    <HotelContex.Provider
+      value={{
+        reservas,
+        addHotel,
+        completReserva,
+        deleteReserva,
+        findHotel,
+        updateHotelR,
+      }}
+    >
       {children}
     </HotelContex.Provider>
   );
