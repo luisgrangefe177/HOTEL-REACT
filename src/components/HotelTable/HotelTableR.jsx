@@ -1,22 +1,19 @@
 import { PropTypes } from "prop-types";
-import { useContext } from "react";
 import Swal from "sweetalert2";
-import { HotelContex } from "../../context/HotelProvider";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
-
+ 
 
 export const HotelTableR = ({ title, items, onComplete, onDelete }) => {
-    const reservas = useContext(HotelContex);
-    console.log("Reservas", reservas)
+    const navigate = useNavigate();
 
 
-  const updateTask = (id_rooms) => {
-    Navigate("/form/" + id_rooms);
+  const updateHotel = (id_rooms) => {
+    navigate("/form/" + id_rooms);
   };
 
-  const confirmar= (id_rooms)=>{
+  const DeleteRoom= (id_rooms)=>{
 
     Swal.fire({
       title: "¿Estás seguro?",
@@ -109,13 +106,13 @@ export const HotelTableR = ({ title, items, onComplete, onDelete }) => {
                     </button>
                     <button
                       className="btn btn-danger"
-                      onClick={() => confirmar(item.id_rooms)}
+                      onClick={() => DeleteRoom(item.id_rooms)}
                     >
                       <i className="fa-solid fa-trash"></i>
                     </button>
                     <button
                     className="btn btn-info"
-                    onClick={() => updateTask(item.id_rooms)}
+                    onClick={() => updateHotel(item.id_rooms)}
                   >
                     Actualizar
                   </button>

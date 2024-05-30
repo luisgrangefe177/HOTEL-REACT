@@ -12,8 +12,8 @@ function Hotel(){
         completReserva(id_rooms);
       }
     
-      const handleDelete=(number_romm)=>{
-        deleteReserva(number_romm);
+      const handleDelete=(id_rooms)=>{
+        deleteReserva(id_rooms);
       }
       
     return(

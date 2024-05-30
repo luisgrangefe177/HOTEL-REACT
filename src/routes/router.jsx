@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import ErrorPage from "../error-page.jsx";
-import HotelForm from "../components/HotelForm/HotelForm.jsx";
+import {HotelForm} from "../components/HotelForm/HotelForm.jsx";
 import Hotel from "../components/hotel/Hotel.jsx";
 import Root from "./root.jsx";
 

@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { getAllHotelServer, updateHotelServer,deleteReservaServer } from "../components/network/hotelNetwork";
+import { getHotelServer, updateHotelServer,deleteReservaServer } from "../components/network/hotelNetwork";
 
 
 
@@ -10,7 +10,7 @@ export const HotelProvider = ({ children }) => {
 
   useEffect(() => {
     // getTodosServer();
-    getAllHotelServer(setreservas);
+    getHotelServer(setreservas);
   }, []);
 
   const addHotel = (reseva) => {

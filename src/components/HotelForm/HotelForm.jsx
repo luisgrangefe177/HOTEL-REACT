@@ -8,7 +8,7 @@ import { showMessage } from "../../util";
 
 export const HotelForm = () => {
   const [reservas, setReservas] = useState([]);
-  const [reserva, setReserva] = useState("");
+  // const [reserva, setReserva] = useState("");
   const [number_romm, setNumber_romm] = useState("");
   const [name_Person, setNombre] = useState("");
   const [date_star, setFechaInicio] = useState("");
@@ -35,16 +35,16 @@ export const HotelForm = () => {
     const HotelFound = getHotelById(urlId);
     console.log(`HotelFound`, HotelFound);
     if (HotelFound) {
-      setNombre(HotelFound.name_Person);
-      setNumber_romm(HotelFound.number_romm);
-      setFechaInicio(convertDate(HotelFound.date_star));
-      setFechaFinal(convertDate(HotelFound.date_end));
-      setTipohabitacion(HotelFound.type_rom)
+      setNombre(HotelFound.nombrePersonR);
+      setNumber_romm(HotelFound.Num_Romm);
+      setFechaInicio(convertDate(HotelFound.fecha_Inicio));
+      setFechaFinal(convertDate(HotelFound.fecha_fin));
+      setTipohabitacion(HotelFound.tipoHabitacion);
     }
   }, [urlId]);
 
   const anddleAdd = () => {
-    setReservas((prevState) => [...prevState, reserva]);
+    setReservas((prevState) => [...prevState, reservas]);
   };
 
   function HabitacionSimple(
@@ -173,7 +173,7 @@ export const HotelForm = () => {
     }
   };
 
-  console.log(reserva);
+  console.log(reservas);
   console.log(reservas);
 
   return (
@@ -280,4 +280,6 @@ export const HotelForm = () => {
     </>
   );
 };
-export default HotelForm;
+HotelForm.propTypes = {
+  // onTask: PropTypes.function,
+}
