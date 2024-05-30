@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { getHotelServer, updateHotelServer,deleteReservaServer } from "../components/network/hotelNetwork";
+import { getHotelServer, updateHotelServer,deleteReservaServer, createHotelServer } from "../components/network/hotelNetwork";
 
 
 
@@ -15,6 +15,7 @@ export const HotelProvider = ({ children }) => {
 
   const addHotel = (reseva) => {
     setreservas((prevState) => [...prevState, reseva]);
+    createHotelServer(reseva)
     console.log(`reservas`, reservas);
   };
 

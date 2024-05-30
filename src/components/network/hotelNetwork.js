@@ -129,15 +129,18 @@ export const deleteReservaServer = (id_rooms) => {
   }
 };
 
-export const createTodoServer = async (todo) => {
+export const createHotelServer = async (reservas) => {
   try {
-    const todoToCreate = {
-      description: todo.descripcion,
-      priority: todo.prioridad,
+    const HotelToCreate = {
+      nameperson: reservas.nombrePersonR,
+      numRoom: reservas.Num_Romm,
+      typeRoom: reservas.tipoHabitacion,
+      dataStar: reservas.fecha_Inicio,
+      dataEnd: reservas.fecha_fin,
     };
     let response = await fetch(`${URL_API}`, {
       method: "POST",
-      body: JSON.stringify(todoToCreate),
+      body: JSON.stringify(HotelToCreate),
       headers: {
         "Content-Type": "application/json",
         Authorization: getToken(),
