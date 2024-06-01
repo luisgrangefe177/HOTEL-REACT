@@ -16,10 +16,6 @@ export const getHotelServer = (cb) => {
             tipoHabitacion: item.tr_typeroom,
             fecha_Inicio: item.tr_starDate,
             fecha_fin: item.tr_dateEnd,
-            letraH: item.tr_letterRoom,
-            dias_fechas: item.tr_catDays,
-            precioHabitacion: item.tr_costRom,
-            precio_Total: item.tr_costTotal,
             reservada: item.tr_complet || item.complet === 0 ? false : true,
           };
         });
@@ -42,10 +38,6 @@ export const getHotelServerSync = async (cb) => {
         tipoHabitacion: item.tr_typeroom,
         fecha_Inicio: item.tr_starDate,
         fecha_fin: item.tr_dateEnd,
-        letraH: item.tr_letterRoom,
-        dias_fechas: item.tr_catDays,
-        precioHabitacion: item.tr_costRom,
-        precio_Total: item.tr_costTotal,
         reservada: item.tr_complet || item.complet === 0 ? false : true,
       };
     });

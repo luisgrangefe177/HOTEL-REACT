@@ -13,7 +13,7 @@ export const HotelForm = () => {
   const [name_Person, setNombre] = useState("");
   const [date_star, setFechaInicio] = useState("");
   const [date_end, setFechaFinal] = useState("");
-  const [type_rom, setTipohabitacion] = useState("");
+  let [type_rom, setTipohabitacion] = useState("");
   const {addReserva} =useHotelApp();
 
   const { addHotel, findHotel, updateHotel } = useHotelApp();
@@ -111,7 +111,7 @@ export const HotelForm = () => {
     return reserva;
   }
 
-  const handleSubmit = async(event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     let result = {};
 
@@ -123,6 +123,7 @@ export const HotelForm = () => {
       date_end != ""
     ) {
       if (type_rom === "Habitacion Individual") {
+        type_rom === "Habitacion Individual" ? type_rom= 1 : "No se encontro";
         result = HabitacionSimple(
           name_Person,
           number_romm,
@@ -132,6 +133,7 @@ export const HotelForm = () => {
         );
         openMessaje("Habitacion individual","reservada","success");
       } else if (type_rom === "Habitacion Doble") {
+        type_rom === "Habitacion Doble" ? type_rom= 2 : "No se encontro";
         result = HabitacionDoble(
           name_Person,
           number_romm,
@@ -142,6 +144,7 @@ export const HotelForm = () => {
         openMessaje("Habitacion Doble","reservada","success");
         
       } else if (type_rom === "Suit de Lujo") {
+        type_rom === "Suit de Lujo" ? type_rom= 3 : "No se encontro";
         result = HabitacionSuit(
           name_Person,
           number_romm,

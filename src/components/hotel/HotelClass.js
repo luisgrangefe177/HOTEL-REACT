@@ -1,6 +1,12 @@
 //Clase principal de habitaciones
 export class Rom_fathet {
-  constructor(nombrePersonR, Num_Romm, tipoHabitacion, fecha_Inicio, fecha_fin) {
+  constructor(
+    nombrePersonR,
+    Num_Romm,
+    tipoHabitacion,
+    fecha_Inicio,
+    fecha_fin
+  ) {
     this.nombrePersonR = nombrePersonR;
     this.precioHabitacion = 0;
     this.Num_Romm = Num_Romm;
@@ -8,12 +14,12 @@ export class Rom_fathet {
     this.fecha_Inicio = fecha_Inicio;
     this.fecha_fin = fecha_fin;
     this.reservada = false;
-    this.dias_fechas=0;
-    this.precio_Total=0;
+    this.dias_fechas = 0;
+    this.precio_Total = 0;
   }
   //Metodo habitacion reservada
   habitacionR() {
-    return this.reservada = true;
+    return (this.reservada = true);
   }
 
   //Metodo detallado para obtener el detalle
@@ -28,7 +34,7 @@ export class Rom_Num1 extends Rom_fathet {
     tipoHabitacion,
     fecha_Inicio,
     fecha_fin,
-    letraH =""
+    letraH = ""
   ) {
     super(nombrePersonR, Num_Romm, tipoHabitacion, fecha_Inicio, fecha_fin);
     this.letraH = letraH;
@@ -53,8 +59,8 @@ export class Rom_Num1 extends Rom_fathet {
       throw new Error("Se genero un error en la reserva de la habitacion");
     }
   }
-  obtenerLetraA(){
-    return this.letraH = "A";
+  obtenerLetraA() {
+    return (this.letraH = "A");
   }
   obtenerPrecioPornoche() {
     return (this.precioHabitacion = 95000);
@@ -64,7 +70,7 @@ export class Rom_Num1 extends Rom_fathet {
     const date_2 = new Date(this.fecha_fin);
     const dias_fecha =
       (date_2.getTime() - date_1.getTime()) / (1000 * 60 * 60 * 24);
-    return this.dias_fechas= dias_fecha;
+    return (this.dias_fechas = dias_fecha);
   }
   obtenerPreciototal() {
     this.precioHabitacion = 95000;
@@ -73,7 +79,7 @@ export class Rom_Num1 extends Rom_fathet {
     const dias_fecha =
       (date_2.getTime() - date_1.getTime()) / (1000 * 60 * 60 * 24);
     const precioTotal = this.precioHabitacion * dias_fecha;
-    return this.precio_Total= precioTotal;
+    return (this.precio_Total = precioTotal);
   }
 }
 
@@ -84,7 +90,7 @@ export class Rom_Num2 extends Rom_Num1 {
     tipoHabitacion,
     fecha_Inicio,
     fecha_fin,
-    letraH=""
+    letraH = ""
   ) {
     super(
       nombrePersonR,
@@ -114,8 +120,8 @@ export class Rom_Num2 extends Rom_Num1 {
       throw new Error("Se genero un error en la reserva de la habitacion");
     }
   }
-  obtenerLetraB(){
-    return this.letraH = "B";
+  obtenerLetraB() {
+    return (this.letraH = "B");
   }
   obtenerPrecioPornoche() {
     return (this.precioHabitacion = 230000);
@@ -125,7 +131,7 @@ export class Rom_Num2 extends Rom_Num1 {
     const date_2 = new Date(this.fecha_fin);
     const dias_fecha =
       (date_2.getTime() - date_1.getTime()) / (1000 * 60 * 60 * 24);
-    return this.dias_fechas= dias_fecha;
+    return (this.dias_fechas = dias_fecha);
   }
   obtenerPreciototal() {
     this.precioHabitacion = 230000;
@@ -134,7 +140,7 @@ export class Rom_Num2 extends Rom_Num1 {
     const dias_fecha =
       (date_2.getTime() - date_1.getTime()) / (1000 * 60 * 60 * 24);
     const precioTotal = this.precioHabitacion * dias_fecha;
-    return this.precio_Total= precioTotal;
+    return (this.precio_Total = precioTotal);
   }
 }
 export class suit extends Rom_Num1 {
@@ -144,7 +150,7 @@ export class suit extends Rom_Num1 {
     tipoHabitacion,
     fecha_Inicio,
     fecha_fin,
-    letraH=""
+    letraH = ""
   ) {
     super(
       nombrePersonR,
@@ -182,8 +188,8 @@ export class suit extends Rom_Num1 {
       throw new Error("Se genero un error en la reserva de la habitacion");
     }
   }
-  obtenerLetraC(){
-    return this.letraH = "C";
+  obtenerLetraC() {
+    return (this.letraH = "C");
   }
   obtenerPrecioPornoche() {
     return (this.precioHabitacion = 559000);
@@ -193,7 +199,7 @@ export class suit extends Rom_Num1 {
     const date_2 = new Date(this.fecha_fin);
     const dias_fecha =
       (date_2.getTime() - date_1.getTime()) / (1000 * 60 * 60 * 24);
-    return this.dias_fechas= dias_fecha;
+    return (this.dias_fechas = dias_fecha);
   }
   obtenerPreciototal() {
     this.precioHabitacion = 559000;
@@ -202,6 +208,6 @@ export class suit extends Rom_Num1 {
     const dias_fecha =
       (date_2.getTime() - date_1.getTime()) / (1000 * 60 * 60 * 24);
     const precioTotal = this.precioHabitacion * dias_fecha;
-    return this.precio_Total= precioTotal;
+    return (this.precio_Total = precioTotal);
   }
 }
