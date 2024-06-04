@@ -1,10 +1,20 @@
 import { Link, Outlet } from "react-router-dom";
-
+import { useHotelApp } from "../context/useHotelApp";
+import "./Root.css";
 export default function Root() {
+  const { getLoggedUser, logoutUser } = useHotelApp();
     return (
       <>
         <div id="sidebar">
-          <h1>React Router Contacts</h1>
+        {getLoggedUser() && (
+          <>
+            <h1>
+              {getLoggedUser().email}
+              <br />
+              <a onClick={logoutUser}>Cerrar sesión</a>
+            </h1>
+          </>
+        )};
           <div>
             <form id="search-form" role="search">
               <input

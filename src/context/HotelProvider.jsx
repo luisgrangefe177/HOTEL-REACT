@@ -7,16 +7,20 @@ export const HotelContex = createContext();
 
 export const HotelProvider = ({ children }) => {
   const [reservas, setreservas] = useState([]);
+    const [user, setUser] = useState(null);
 
   useEffect(() => {
     // getTodosServer();
     getHotelServer(setreservas);
   }, []);
 
-  const addHotel = (reseva) => {
-    setreservas((prevState) => [...prevState, reseva]);
-    createHotelServer(reseva)
-    console.log(`reservas`, reservas);
+  const addHotel = async (reseva) => {
+    let response = {};
+      response = await createHotelServer(reseva);
+    if (response.state) {
+      setreservas((prevState) => [...prevState, reseva]);
+    }
+    return response;
   };
 
   const completReserva = (id_rooms) => {
@@ -49,6 +53,29 @@ export const HotelProvider = ({ children }) => {
       setreservas(newReservas);
     }
   };
+
+  const loginUser = (user, token) => {
+    setUser(user);
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(user));
+  };
+
+  const logoutUser = () => {
+    setUser(null);
+    localStorage.clear();
+    window.location = "/";
+  };
+
+  const getLoggedUser = () => {
+    return user;
+  };
+
+  const checkUser = () => {
+    const currentUser = localStorage.getItem("user");
+    if (currentUser) {
+      setUser(JSON.parse(currentUser));
+    }
+  };
   return (
     <HotelContex.Provider
       value={{
@@ -58,6 +85,11 @@ export const HotelProvider = ({ children }) => {
         deleteReserva,
         findHotel,
         updateHotelR,
+        loginUser,
+        logoutUser,
+        getLoggedUser,
+        checkUser
+
       }}
     >
       {children}

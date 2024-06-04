@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { authServer } from "../network/authNetwork";
 import { showMessage } from "../../util";
-import { useTodoApp } from "../../context/useTodoApp";
 import { useNavigate } from "react-router-dom";
+import { useHotelApp } from "../../context/useHotelApp";
 
 export const Login = () => {
   const navigate = useNavigate();
-  const { loginUser, getLoggedUser } = useTodoApp();
+  const { loginUser, getLoggedUser } = useHotelApp();
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(true);
