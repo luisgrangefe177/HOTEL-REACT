@@ -1,6 +1,6 @@
 import { getToken } from "../../util";
 
-const URL_API = import.meta.env.VITE_APP_API_URL + "/hotel";
+const URL_API = import.meta.env.VITE_APP_API_URL + "/hoteles";
 
 export const getHotelServer = (cb) => {
   try {
