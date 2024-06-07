@@ -88,8 +88,8 @@ export const updateHotelServer = (id_rooms, reservas) => {
       nameperson: reservas.nombrePersonR,
       numRoom: reservas.Num_Romm,
       typeRoom: reservas.tipoHabitacion,
-      dataStar: reservas.fecha_Inicio,
-      dataEnd: reservas.fecha_fin,
+      dateStar: reservas.fecha_Inicio,
+      dateEnd: reservas.fecha_fin,
     };
     fetch(`${URL_API}/${id_rooms}`, {
       method: "PUT",
@@ -127,8 +127,8 @@ export const createHotelServer = async (reservas) => {
       nameperson: reservas.nombrePersonR,
       numRoom: reservas.Num_Romm,
       typeRoom: reservas.tipoHabitacion,
-      dataStar: reservas.fecha_Inicio,
-      dataEnd: reservas.fecha_fin,
+      dateStar: reservas.fecha_Inicio,
+      dateEnd: reservas.fecha_fin,
     };
     let response = await fetch(`${URL_API}`, {
       method: "POST",
