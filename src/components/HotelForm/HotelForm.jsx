@@ -3,7 +3,7 @@ import { Rom_Num1, Rom_Num2, suit } from "../hotel/HotelClass";
 import { openMessaje } from "../../componentes";
 import { useHotelApp } from "../../context/useHotelApp";
 import { useParams } from "react-router-dom";
-import { showMessage } from "../../util";
+import { showMessage } from "../../util"; 
 
 
 export const HotelForm = () => {

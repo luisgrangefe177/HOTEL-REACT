@@ -1,6 +1,7 @@
 import { PropTypes } from "prop-types";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+// import { Rom_Num2 } from "../hotel/HotelClass";
 
 
  
@@ -59,6 +60,18 @@ export const HotelTableR = ({ title, items, onComplete, onDelete }) => {
   
   }
 
+  // const obtenerdetalle = (hotel) => { 
+  //   console.log(hotel)
+  //   const operacion= new Rom_Num2(hotel.nombrePersonR,
+  //   hotel.Num_Romm,
+  //   hotel.tipoHabitacion,
+  //   hotel.fecha_Inicio,
+  //   hotel.fecha_fin,
+  //     hotel.letraH)
+  //   operacion.obtenerDetalle()
+  //   return {Letrab:operacion.obtenerLetraB()}
+  // }
+
   return (
     <>
 
@@ -88,6 +101,7 @@ export const HotelTableR = ({ title, items, onComplete, onDelete }) => {
                 <td>{item.tipoHabitacion}</td>
                 <td>{item.fecha_Inicio}</td>
                 <td>{item.fecha_fin}</td>
+                {/* <td>{obtenerdetalle(item).Letrab}</td> */}
                 <td>{item.letraH}</td>
                 <td>{item.dias_fechas}</td>
                 <td>{item.precioHabitacion}</td>

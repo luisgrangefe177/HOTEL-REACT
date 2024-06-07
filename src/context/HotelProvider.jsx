@@ -12,6 +12,7 @@ export const HotelProvider = ({ children }) => {
   useEffect(() => {
     // getTodosServer();
     getHotelServer(setreservas);
+    checkUser();
   }, []);
 
   const addHotel = async (reseva) => {
