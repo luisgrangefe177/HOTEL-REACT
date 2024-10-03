@@ -40,43 +40,52 @@ export const Login = () => {
   if (isLoading) return "";
 
   return (
-    <form onSubmit={handleSubmit} className="was-validated">
-      <div className="mb-3 mt-3">
-        <label htmlFor="uname" className="form-label">
-          Username:
-        </label>
-        <input
-          type="text"
-          className="form-control"
-          id="uname"
-          placeholder="Enter username"
-          name="uname"
-          onChange={(event) => setUser(event.target.value)}
-          required
-        />
-        <div className="valid-feedback">Valid.</div>
-        <div className="invalid-feedback">Please fill out this field.</div>
+    <>
+      <div className="container my-5">
+        <div className="bg-light text-secondary p-5 rounded-3 border mx-auto w-lg-50 w-md-75 w-sm-100">
+          <h1 className="display-5 fw-bold text-center">Iniciar Sesión</h1>
+          <form onSubmit={handleSubmit} className="was-validated p-4">
+            <div className="mb-3">
+              <label htmlFor="uname" className="form-label">
+                Nombre de usuario:
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="uname"
+                placeholder="Ingrese nombre de usuario"
+                name="uname"
+                onChange={(event) => setUser(event.target.value)}
+                required
+              />
+              <div className="valid-feedback">Correcto</div>
+              <div className="invalid-feedback">El campo es requerido.</div>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="pwd" className="form-label">
+                Contraseña:
+              </label>
+              <input
+                type="password"
+                className="form-control"
+                id="pwd"
+                placeholder="Ingrese contraseña"
+                name="pswd"
+                onChange={(event) => setPassword(event.target.value)}
+                required
+                autoComplete="false"
+              />
+              <div className="valid-feedback">Correcto</div>
+              <div className="invalid-feedback">El campo es requerido.</div>
+            </div>
+            <div className="text-center">
+              <button type="submit" className="btn w-50 btn-outline-dark">
+                Iniciar
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-      <div className="mb-3">
-        <label htmlFor="pwd" className="form-label">
-          Password:
-        </label>
-        <input
-          type="password"
-          className="form-control"
-          id="pwd"
-          placeholder="Enter password"
-          name="pswd"
-          onChange={(event) => setPassword(event.target.value)}
-          required
-          autoComplete="false"
-        />
-        <div className="valid-feedback">Valid.</div>
-        <div className="invalid-feedback">Please fill out this field.</div>
-      </div>
-      <button type="submit" className="btn btn-primary">
-        Submit
-      </button>
-    </form>
+    </>
   );
 };
